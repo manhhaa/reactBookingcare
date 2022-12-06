@@ -1,0 +1,68 @@
+.slick-prev {
+    left: -45px;
+}
+
+
+.slick-prev:before,
+.slick-next:before {
+    font-family: 'slick';
+    font-size: 40px;
+    line-height: 1;
+    color: #111;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.section-list {
+    width: 290px;
+    padding: 5px;
+
+
+    .section-image {
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 156px;
+        width: 100%;
+        padding: 5px;
+    }
+
+    h3 {
+        color: #111;
+        font-size: 13px;
+        padding: 5px 0;
+        margin: 0;
+    }
+
+    &:hover h3 {
+        color: #45c3d2 !important;
+    }
+
+
+}
+
+
+
+body,
+input,
+button,
+option,
+textarea,
+label,
+select,
+legend,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+}

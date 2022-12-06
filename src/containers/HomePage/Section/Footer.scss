@@ -1,0 +1,160 @@
+.Footer-container {
+    background: #efefef;
+    padding: 30px 0;
+    display: flex;
+    justify-content: center;
+
+    .Footer {
+        width: 1200px;
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+        // justify-content: flex-start;
+
+        .Footer-content {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            .Footer-info {
+                width: 50%;
+        
+                .Footer-info-logo {
+                    background: url('../../../assets/logo.svg');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 200px;
+                    height: 44px;
+                }
+        
+                h3 {
+                    font-size: 16px;
+                    font-weight: bold;
+                    padding-top: 10px;
+                }
+        
+                h4 {
+                    font-size: 14px;
+        
+                    i {
+                        padding-right: 5px;
+                        font-size: 14px;
+                    }
+                }
+        
+                .Footer-confirm {
+                    background-color: #efefef;
+                    height: 40px;
+                    padding-top: 10px;
+        
+                    .Footer-info-logo-bct {
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
+                    }
+                }
+            }
+        
+        
+        
+            .Footer-contact {
+                display: flex;
+                width: 50%;
+        
+                .Footer-contact-list {
+                    width: 50%;
+        
+                    .contact-list {
+                        font-size: 14px;
+                        color: #45c3d2;
+                        cursor: pointer;
+                        line-height: 1.5;
+                        padding: 5px 0;
+        
+                    }
+                }
+        
+                .Footer-location {
+                    width: 50%;
+        
+                    .location {
+                        padding: 0 0 10px;
+        
+                        h3 {
+                            font-size: 14px;
+                            font-weight: bold;
+                        }
+        
+                        h4 {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        .Footer-download {
+            width: 100%;
+
+            .download-app {
+                display: flex;
+
+                .download-list {
+                    color: #45c3d2;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.chan-trang {
+    background: #64b9e5;
+    color: #fff;
+    padding: 10px;
+    
+
+    .chan-trang-content {
+        display: flex;
+        width: 1200px;
+        margin: auto;
+        // padding: auto;
+
+        .copyright {
+            flex: 4;
+        }
+
+        .watch-info {
+            flex: 8;
+            display: flex;
+            justify-content: flex-end;
+
+
+
+            .face {
+                color: #3c579e;
+                background: url('../../../assets/facebook.svg');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 32px;
+                width: 32px;
+                margin: 10px 0;
+                cursor: pointer;
+            }
+
+            .you {
+                color: #3c579e;
+                background: url('../../../assets/youtube.svg');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 32px;
+                width: 32px;
+                margin: 10px;
+                cursor: pointer;
+            }
+        }
+    }
+}
