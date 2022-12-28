@@ -6,6 +6,10 @@ const initialState = {
   positions: [],
   roles: [],
   users: [],
+  doctors: [],
+  allDoctors: [],
+  message: "",
+  doctorHours: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -75,6 +79,51 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+
+    case actionTypes.FECTH_HOME_DOCTOR_SUCCESS:
+      state.doctors = action.doctors;
+      return {
+        ...state,
+      };
+    case actionTypes.FECTH_HOME_DOCTOR_FAILED:
+      state.doctors = [];
+      return {
+        ...state,
+      };
+
+    case actionTypes.FECTH_ALL_DOCTOR_SUCCESS:
+      state.allDoctors = action.doctors;
+      return {
+        ...state,
+      };
+    case actionTypes.FECTH_ALL_DOCTOR_FAILED:
+      state.allDoctors = [];
+      return {
+        ...state,
+      };
+
+    case actionTypes.FECTH_SAVE_INFO_DOCTOR_SUCCESS:
+      state.message = action.message;
+      return {
+        ...state,
+      };
+    case actionTypes.FECTH_SAVE_INFO_DOCTOR_FAILED:
+      state.message = "";
+      return {
+        ...state,
+      };
+
+    case actionTypes.FECTH_ALLCODE_DOCTOR_HOURS_SUCCESS:
+      state.doctorHours = action.data;
+      return {
+        ...state,
+      };
+    case actionTypes.FECTH_ALLCODE_DOCTOR_HOURS_FAILED:
+      state.doctorHours = "";
+      return {
+        ...state,
+      };
+
     default:
       return state;
   }

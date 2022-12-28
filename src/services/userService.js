@@ -24,6 +24,30 @@ const getAllcode = (typeInput) => {
   return axios.get(`/api/allcode?type=${typeInput}`);
 };
 
+const getHomeDoctor = (limit) => {
+  return axios.get(`/api/top-doctor-home?limit=${limit}`);
+};
+
+const getAllDoctors = () => {
+  return axios.get(`/api/get-all-doctors`);
+};
+
+const saveInforDoctor = (data) => {
+  return axios.post(`/api/infor-doctors`, data);
+};
+
+const getDetailInforDoctorById = (inputID) => {
+  return axios.get(`/api/get-detail-doctor-by-id?id=${inputID}`);
+};
+
+const getBulkScheduleDoctor = (data) => {
+  return axios.post(`/api/create-bulk`, data);
+}
+
+const getScheduleByDate = (doctorId, date) => {
+  return axios.get(`/api/get-schedule-doctor-by-date?doctorId=${doctorId}&date=${date}`);
+}
+
 export {
   handleLoginApi,
   getAllUsers,
@@ -31,4 +55,9 @@ export {
   deleteUser,
   updateUser,
   getAllcode,
+  getHomeDoctor,
+  getAllDoctors,
+  saveInforDoctor,
+  getDetailInforDoctorById,
+  getBulkScheduleDoctor, getScheduleByDate
 };

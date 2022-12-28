@@ -7,6 +7,7 @@ import "./UserRedux.scss";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import ManageUser from "./ManageUser";
+import CustomScrollbars from "../../../components/CustomScrollbars";
 
 class UserRedux extends Component {
   constructor(props) {
@@ -211,213 +212,219 @@ class UserRedux extends Component {
     let position = this.state.position;
     let role = this.state.role;
     return (
-      <div className="user-redux-container">
-        <div className="title">Manage user with redux</div>
-        <div className="user-redux-body">
-          <div className="container">
-            <div className="row">
-              <div className="col-12 my-3 fw-bold">
-                <FormattedMessage id="manage-user.addUser" />
-              </div>
-
-              <div className="col-6">
-                <label>
-                  <FormattedMessage id="manage-user.email" />
-                </label>
-                <input
-                  type="email"
-                  className="form-control"
-                  value={email}
-                  onChange={(e) => this.handleSaveUser(e, "email")}
-                  disabled={this.state.action === CRUD_USER.EDIT ? true : false}
-                />
-              </div>
-              <div className="col-6">
-                <label>
-                  <FormattedMessage id="manage-user.password" />
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  value={password}
-                  onChange={(e) => this.handleSaveUser(e, "password")}
-                  disabled={this.state.action === CRUD_USER.EDIT ? true : false}
-                />
-              </div>
-              <div className="col-6">
-                <label>
-                  <FormattedMessage id="manage-user.firstName" />
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={firstName}
-                  onChange={(e) => this.handleSaveUser(e, "firstName")}
-                />
-              </div>
-              <div className="col-6">
-                <label>
-                  <FormattedMessage id="manage-user.lastName" />
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={lastName}
-                  onChange={(e) => this.handleSaveUser(e, "lastName")}
-                />
-              </div>
-
-              <div className="col-3">
-                <label>
-                  <FormattedMessage id="manage-user.phoneNumber" />
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={phoneNumber}
-                  onChange={(e) => this.handleSaveUser(e, "phoneNumber")}
-                />
-              </div>
-              <div className="col-9">
-                <label>
-                  <FormattedMessage id="manage-user.address" />
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={address}
-                  onChange={(e) => this.handleSaveUser(e, "address")}
-                />
-              </div>
-              <div className="col-3">
-                <label>
-                  <FormattedMessage id="manage-user.gender" />
-                </label>
-                <select
-                  value={gender}
-                  className="form-control"
-                  onChange={(e) => this.handleSaveUser(e, "gender")}
-                >
-                  {genders &&
-                    genders.length > 0 &&
-                    genders.map((item, index) => {
-                      return (
-                        <option key={index} value={item.keymap}>
-                          {language === LANGUAGES.VI
-                            ? item.valueVi
-                            : item.valueEN}
-                        </option>
-                      );
-                    })}
-                </select>
-              </div>
-              <div className="col-3">
-                <label>
-                  <FormattedMessage id="manage-user.position" />
-                </label>
-                <select
-                  value={position}
-                  className="form-control"
-                  onChange={(e) => this.handleSaveUser(e, "position")}
-                >
-                  {positions &&
-                    positions.length > 0 &&
-                    positions.map((item, index) => {
-                      return (
-                        <option key={index} value={item.keymap}>
-                          {language === LANGUAGES.VI
-                            ? item.valueVi
-                            : item.valueEN}
-                        </option>
-                      );
-                    })}
-                </select>
-              </div>
-              <div className="col-3">
-                <label>
-                  <FormattedMessage id="manage-user.role" />
-                </label>
-                <select
-                  value={role}
-                  className="form-control"
-                  onChange={(e) => this.handleSaveUser(e, "role")}
-                >
-                  {roles &&
-                    roles.length > 0 &&
-                    roles.map((item, index) => {
-                      return (
-                        <option key={index} value={item.keymap}>
-                          {language === LANGUAGES.VI
-                            ? item.valueVi
-                            : item.valueEN}
-                        </option>
-                      );
-                    })}
-                </select>
-              </div>
-
-              <div className="col-3">
-                <label>
-                  <FormattedMessage id="manage-user.avatar" />
-                </label>
-                <div className="form-control preview-image-container">
-                  <input
-                    type="file"
-                    // className="form-control"
-                    id="preview-img"
-                    onChange={(e) => {
-                      this.handleUploadImage(e);
-                    }}
-                    hidden
-                  />
-                  <label htmlFor="preview-img">
-                    <i class="fa-solid fa-upload"></i>
-                    Tải ảnh
-                  </label>
-                  <div
-                    className="preview-image"
-                    style={{ backgroundImage: `url(${this.state.imageUrl})` }}
-                    onClick={() => {
-                      this.setState({
-                        isOpen: true,
-                      });
-                    }}
-                  ></div>
+      <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
+        <div className="user-redux-container">
+          <div className="title">Manage user with redux</div>
+          <div className="user-redux-body">
+            <div className="container">
+              <div className="row">
+                <div className="col-12 my-3 fw-bold">
+                  <FormattedMessage id="manage-user.addUser" />
                 </div>
-              </div>
-              {this.state.isOpen && (
-                <Lightbox
-                  mainSrc={this.state.imageUrl}
-                  onCloseRequest={() => this.setState({ isOpen: false })}
-                />
-              )}
 
-              <div className="col-12 my-3">
-                <button
-                  type="button"
-                  className={
-                    this.state.action === CRUD_USER.EDIT
-                      ? "btn btn-warning"
-                      : "btn btn-primary"
-                  }
-                  onClick={() => {
-                    this.handleCreateUser();
-                  }}
-                >
-                  {this.state.action === CRUD_USER.EDIT ? (
-                    <FormattedMessage id="manage-user.edit" />
-                  ) : (
-                    <FormattedMessage id="manage-user.button" />
-                  )}
-                </button>
-              </div>
-              <div className="col-12 mb-10">
-                <ManageUser getUserUpdate={this.getUserUpdate} />
+                <div className="col-6">
+                  <label>
+                    <FormattedMessage id="manage-user.email" />
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    value={email}
+                    onChange={(e) => this.handleSaveUser(e, "email")}
+                    disabled={
+                      this.state.action === CRUD_USER.EDIT ? true : false
+                    }
+                  />
+                </div>
+                <div className="col-6">
+                  <label>
+                    <FormattedMessage id="manage-user.password" />
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    value={password}
+                    onChange={(e) => this.handleSaveUser(e, "password")}
+                    disabled={
+                      this.state.action === CRUD_USER.EDIT ? true : false
+                    }
+                  />
+                </div>
+                <div className="col-6">
+                  <label>
+                    <FormattedMessage id="manage-user.firstName" />
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={firstName}
+                    onChange={(e) => this.handleSaveUser(e, "firstName")}
+                  />
+                </div>
+                <div className="col-6">
+                  <label>
+                    <FormattedMessage id="manage-user.lastName" />
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={lastName}
+                    onChange={(e) => this.handleSaveUser(e, "lastName")}
+                  />
+                </div>
+
+                <div className="col-3">
+                  <label>
+                    <FormattedMessage id="manage-user.phoneNumber" />
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={phoneNumber}
+                    onChange={(e) => this.handleSaveUser(e, "phoneNumber")}
+                  />
+                </div>
+                <div className="col-9">
+                  <label>
+                    <FormattedMessage id="manage-user.address" />
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={address}
+                    onChange={(e) => this.handleSaveUser(e, "address")}
+                  />
+                </div>
+                <div className="col-3">
+                  <label>
+                    <FormattedMessage id="manage-user.gender" />
+                  </label>
+                  <select
+                    value={gender}
+                    className="form-control"
+                    onChange={(e) => this.handleSaveUser(e, "gender")}
+                  >
+                    {genders &&
+                      genders.length > 0 &&
+                      genders.map((item, index) => {
+                        return (
+                          <option key={index} value={item.keymap}>
+                            {language === LANGUAGES.VI
+                              ? item.valueVi
+                              : item.valueEN}
+                          </option>
+                        );
+                      })}
+                  </select>
+                </div>
+                <div className="col-3">
+                  <label>
+                    <FormattedMessage id="manage-user.position" />
+                  </label>
+                  <select
+                    value={position}
+                    className="form-control"
+                    onChange={(e) => this.handleSaveUser(e, "position")}
+                  >
+                    {positions &&
+                      positions.length > 0 &&
+                      positions.map((item, index) => {
+                        return (
+                          <option key={index} value={item.keymap}>
+                            {language === LANGUAGES.VI
+                              ? item.valueVi
+                              : item.valueEN}
+                          </option>
+                        );
+                      })}
+                  </select>
+                </div>
+                <div className="col-3">
+                  <label>
+                    <FormattedMessage id="manage-user.role" />
+                  </label>
+                  <select
+                    value={role}
+                    className="form-control"
+                    onChange={(e) => this.handleSaveUser(e, "role")}
+                  >
+                    {roles &&
+                      roles.length > 0 &&
+                      roles.map((item, index) => {
+                        return (
+                          <option key={index} value={item.keymap}>
+                            {language === LANGUAGES.VI
+                              ? item.valueVi
+                              : item.valueEN}
+                          </option>
+                        );
+                      })}
+                  </select>
+                </div>
+
+                <div className="col-3">
+                  <label>
+                    <FormattedMessage id="manage-user.avatar" />
+                  </label>
+                  <div className="form-control preview-image-container">
+                    <input
+                      type="file"
+                      // className="form-control"
+                      id="preview-img"
+                      onChange={(e) => {
+                        this.handleUploadImage(e);
+                      }}
+                      hidden
+                    />
+                    <label htmlFor="preview-img">
+                      <i class="fa-solid fa-upload"></i>
+                      Tải ảnh
+                    </label>
+                    <div
+                      className="preview-image"
+                      style={{ backgroundImage: `url(${this.state.imageUrl})` }}
+                      onClick={() => {
+                        this.setState({
+                          isOpen: true,
+                        });
+                      }}
+                    ></div>
+                  </div>
+                </div>
+                {this.state.isOpen && (
+                  <Lightbox
+                    mainSrc={this.state.imageUrl}
+                    onCloseRequest={() => this.setState({ isOpen: false })}
+                  />
+                )}
+
+                <div className="col-12 my-3">
+                  <button
+                    type="button"
+                    className={
+                      this.state.action === CRUD_USER.EDIT
+                        ? "btn btn-warning"
+                        : "btn btn-primary"
+                    }
+                    onClick={() => {
+                      this.handleCreateUser();
+                    }}
+                  >
+                    {this.state.action === CRUD_USER.EDIT ? (
+                      <FormattedMessage id="manage-user.edit" />
+                    ) : (
+                      <FormattedMessage id="manage-user.button" />
+                    )}
+                  </button>
+                </div>
+                <div className="col-12 mb-10">
+                  <ManageUser getUserUpdate={this.getUserUpdate} />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </CustomScrollbars>
     );
   }
 }

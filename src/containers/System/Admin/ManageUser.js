@@ -4,6 +4,12 @@ import { connect } from "react-redux";
 import "./ManageUser.scss";
 import * as actions from "../../../store/actions";
 import { LANGUAGES, CRUD_USER } from "../../../utils";
+import MarkdownIt from "markdown-it";
+import MdEditor from "react-markdown-editor-lite";
+// import style manually
+import "react-markdown-editor-lite/lib/index.css";
+
+const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 class ManageUser extends Component {
   constructor(props) {
@@ -72,6 +78,10 @@ class ManageUser extends Component {
               </tr>
             ))}
         </table>
+        <MdEditor
+          style={{ height: "500px" }}
+          renderHTML={(text) => mdParser.render(text)}
+        />
       </>
     );
   }

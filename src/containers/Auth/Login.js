@@ -37,7 +37,8 @@ class Login extends Component {
     });
     try {
       let data = await handleLoginApi(this.state.email, this.state.password);
-      this.props.userLoginSuccess(data.user);
+      console.log(data)
+      this.props.userLoginSuccess(data.data.user);
     } catch (error) {
       if (error.response) {
         if (error.response.data) {
@@ -54,6 +55,12 @@ class Login extends Component {
       eye: !this.state.eye,
     });
   };
+
+  handleOnKeyDown = (e) => {
+    if (e.key === 'Enter' || e.keycode === 13) {
+      this.handleLogin()
+    }
+  }
 
   render() {
     return (
@@ -72,6 +79,7 @@ class Login extends Component {
                   onChange={(e) => {
                     this.handleOnchangeUsername(e);
                   }}
+                  onKeyDown={(e) => this.handleOnKeyDown(e)}
                 ></input>
               </div>
               <div className="col-12 form-group login-input">
@@ -79,15 +87,16 @@ class Login extends Component {
 
                 <div className="custom-input-password">
                   <input
-                    type={this.state.eye == true ? "text" : "password"}
+                    type={this.state.eye == false ? "text" : "password"}
                     className="form-control"
                     placeholder="Enter your Password"
                     value={this.state.password}
                     onChange={(e) => {
                       this.handleOnchangePassword(e);
                     }}
+                    onKeyDown={(e) => this.handleOnKeyDown(e)}
                   ></input>
-                  {this.state.eye == true ? (
+                  {this.state.eye == false ? (
                     <i
                       class="fa-solid fa-eye"
                       onClick={() => {

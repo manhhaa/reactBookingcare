@@ -5,6 +5,9 @@ import {
   getAllUsers,
   deleteUser,
   updateUser,
+  getHomeDoctor,
+  getAllDoctors,
+  saveInforDoctor,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -104,6 +107,7 @@ export const createNewUserRedux = (data) => {
         dispatch(createUserSuccess());
         dispatch(AllUserRedux());
       } else {
+        toast.error("Create a new user failed!");
         dispatch(createUserFailed());
       }
     } catch (e) {
@@ -155,6 +159,7 @@ export const fecthDeleteUser = (data) => {
         dispatch(fecthDeleteUserSuccess());
         dispatch(AllUserRedux());
       } else {
+        toast.error("Delete user failed!");
         dispatch(fecthDeleteUserFailed());
       }
     } catch (e) {
@@ -181,6 +186,7 @@ export const UpdateUserRedux = (data) => {
         dispatch(updateUserSuccess());
         dispatch(AllUserRedux());
       } else {
+        toast.error("Update user failed!");
         dispatch(updateUserFailed());
       }
     } catch (e) {
@@ -196,4 +202,107 @@ export const updateUserSuccess = () => ({
 
 export const updateUserFailed = () => ({
   type: actionTypes.ALL_USERS_FAILED,
+});
+
+export const fecthHomeDoctor = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getHomeDoctor(10);
+      if (res && res.data.errCode === 0) {
+        dispatch(fecthHomeDoctorSuccess(res.data.message));
+      } else {
+        dispatch(fecthHomeDoctorFailed());
+      }
+    } catch (e) {
+      dispatch(fecthHomeDoctorFailed());
+      console.log(e);
+    }
+  };
+};
+
+export const fecthHomeDoctorSuccess = (data) => ({
+  type: actionTypes.FECTH_HOME_DOCTOR_SUCCESS,
+  doctors: data,
+});
+
+export const fecthHomeDoctorFailed = () => ({
+  type: actionTypes.FECTH_HOME_DOCTOR_FAILED,
+});
+
+export const fecthAllDoctors = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllDoctors();
+      if (res && res.data.errCode === 0) {
+        dispatch(fecthAllDoctorSuccess(res.data.message));
+      } else {
+        dispatch(fecthAllDoctorFailed());
+      }
+    } catch (e) {
+      dispatch(fecthAllDoctorFailed());
+      console.log(e);
+    }
+  };
+};
+
+export const fecthAllDoctorSuccess = (data) => ({
+  type: actionTypes.FECTH_ALL_DOCTOR_SUCCESS,
+  doctors: data,
+});
+
+export const fecthAllDoctorFailed = () => ({
+  type: actionTypes.FECTH_ALL_DOCTOR_FAILED,
+});
+
+export const fecthSaveInforDoctors = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await saveInforDoctor(data);
+      if (res && res.data.errCode === 0) {
+        toast.success("Save infor doctor succeed!");
+        dispatch(fecthSaveInforDoctorSuccess());
+      } else {
+        toast.error("Save infor doctor error!");
+        dispatch(fecthSaveInforDoctorFailed());
+      }
+    } catch (e) {
+      dispatch(fecthSaveInforDoctorFailed());
+      console.log(e);
+    }
+  };
+};
+
+export const fecthSaveInforDoctorSuccess = (message) => ({
+  type: actionTypes.FECTH_SAVE_INFO_DOCTOR_SUCCESS,
+});
+
+export const fecthSaveInforDoctorFailed = () => ({
+  type: actionTypes.FECTH_SAVE_INFO_DOCTOR_FAILED,
+});
+
+
+export const fecthHoursDoctors = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllcode('TIME');
+      console.log(res)
+      if (res && res.data.errCode === 0) {
+        dispatch(fecthHoursDoctorsSuccess(res.data.data));
+      } else {
+        dispatch(fecthHoursDoctorsFailed());
+      }
+    } catch (e) {
+      dispatch(fecthHoursDoctorsFailed());
+      console.log(e);
+    }
+  };
+};
+
+export const fecthHoursDoctorsSuccess = (message) => ({
+  type: actionTypes.FECTH_ALLCODE_DOCTOR_HOURS_SUCCESS,
+  data: message
+});
+
+export const fecthHoursDoctorsFailed = () => ({
+  type: actionTypes.FECTH_ALLCODE_DOCTOR_HOURS_FAILED,
 });
